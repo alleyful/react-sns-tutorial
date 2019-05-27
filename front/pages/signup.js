@@ -1,9 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
-
 import AppLayout from '../components/AppLayout';
 
-const Home = () => {
+const Signup = () => {
 	return (
 		<>
 			<Head>
@@ -12,10 +11,10 @@ const Home = () => {
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/antd/3.19.0/antd.js"/>
 			</Head>
 			<AppLayout>
-				<div>Hello Next</div>
+				<div>signup</div>
 			</AppLayout>
 		</>
 	)
 };
 
-export default Home;
+export default Signup;
