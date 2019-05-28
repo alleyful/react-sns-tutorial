@@ -8,27 +8,29 @@ const LoginForm = () => {
 	const [ password, onChangePassword ] = useInput('');
 	const onSubmitForm = useCallback((e) => {
 		e.preventDefault();
-		console.log({id, password})
-	}, [id, password]);
+		console.log({
+			id, password,
+		});
+	}, [ id, password ]);
 
 	return (
-		<Form>
+		<Form onSubmit={onSubmitForm} style={{ padding: '10px' }}>
 			<div>
 				<label htmlFor="user-id">아이디</label>
 				<br/>
-				<Input name="user-id" required/>
+				<Input name="user-id" value={id} onChange={onChangeId} required/>
 			</div>
 			<div>
 				<label htmlFor="user-password">비밀번호</label>
 				<br/>
-				<Input name="user-password" type="password" required/>
+				<Input name="user-password" value={password} onChange={onChangePassword} type="password" required/>
 			</div>
-			<div>
+			<div style={{ marginTop: '10px' }}>
 				<Button type="primary" htmlType="submit" loading={false}>로그인</Button>
 				<Link href="/signup"><a><Button>회원가입</Button></a></Link>
 			</div>
 		</Form>
-	)
+	);
 };
 
 export default LoginForm;

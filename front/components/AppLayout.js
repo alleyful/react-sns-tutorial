@@ -1,7 +1,9 @@
 import React from 'react';
-import Link from 'next/link'
-import { Menu, Input, Button, Row, Col, Card, Avatar } from 'antd';
+import Link from 'next/link';
+import PropTypes from 'prop-types';
+import { Col, Input, Menu, Row } from 'antd';
 import LoginForm from './LoginForm';
+import UserProfile from './UserProfile';
 
 const dummy = {
 	nickname: 'alley',
@@ -21,34 +23,25 @@ const AppLayout = ({ children }) => {
 					<Input.Search enterButton style={{ verticalAlign: 'middle' }}/>
 				</Menu.Item>
 			</Menu>
-			<Link href="/signup"><a><Button>회원가입</Button></a></Link>
-			<Row>
+			<Row gutter={8}>
 				<Col xs={24} md={6}>
-					{dummy.isLoggedIn ? (
-						<Card
-							actions={[
-								<div key="twit">aaa<br/>{dummy.Post.length}</div>,
-								<div key="following">bbb<br/>{dummy.Followings.length}</div>,
-								<div key="followers">ccc<br/>{dummy.Followers.length}</div>
-							]}
-						>
-							<Card.Meta
-								avatar={<Avatar>{dummy.nickname[0]}}</Avatar>}
-								title={dummy.nickname}
-							/>
-							<Link href="./signup"><a><Button>회원가입</Button></a></Link>
-						</Card>
-					) : (
-						<LoginForm />
-					)}
+					{dummy.isLoggedIn
+						? <UserProfile/>
+						: <LoginForm/>}
 				</Col>
 				<Col xs={24} md={12}>
 					{children}
 				</Col>
-				<Col xs={24} md={6}>3</Col>
+				<Col xs={24} md={6}>
+					<Link href="https://github.com/alleyful"><a target="_blank">Made by Alleyful</a></Link>
+				</Col>
 			</Row>
 		</div>
 	);
+};
+
+AppLayout.propTypes = {
+	children: PropTypes.node,
 };
 
 export default AppLayout;
